@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <!-- Images will be displayed here -->
+    </div>
+    <button id="start-button">Start Slideshow</button>
+
+    <script>
+        const images = [
+            "Number 66.jpg",
+            "Number 37.jpg",
+            "Number 74.jpg",
+            "Number 13.jpg",
+            "Number 84.jpg",
+            "Number 63.jpg",
+            "Number 41.jpg",
+            "Number 26.jpg", 
+            "Number 15.jpg",
+            "Number 76.jpg",
+            "Number 23.jpg",
+            "Number 98.jpg",
+            "Number 13.jpg",
+            "Number 39.jpg",
+            "Number 58.jpg",
+            "Number 33.jpg",
+            "Number 68.jpg",
+            "Number 81.jpg",
+            "Number 48.jpg",
+            "Number 87.jpg",             
+            // Add the file names of your 20 images here
+        ];
+
+        const imageContainer = document.getElementById("image-container");
+        const startButton = document.getElementById("start-button");
+
+        let currentImageIndex = 0;
+
+        function showNextImage() {
+            if (currentImageIndex < images.length) {
+                const image = new Image();
+                image.src = images[currentImageIndex];
+                imageContainer.innerHTML = '';
+                imageContainer.appendChild(image);
+
+                currentImageIndex++;
+
+                setTimeout(showNextImage, 5000); // Display each image for 5 seconds
+            } else {
+                // All images have been displayed, close the website
+                setTimeout(() => {
+                    window.close();
+                }, 5000);
+            }
+        }
+
+        startButton.addEventListener("click", () => {
+            startButton.style.display = "none";
+            showNextImage();
+        });
+    </script>
+</body>
+</html>
